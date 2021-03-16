@@ -1,0 +1,66 @@
+<h3>User Profile</h3>
+
+<p *ngIf="!ready; else show">
+  Please wait ...
+</p>
+
+<ng-template #show>
+  <p *ngFor="let c of user data">
+    <b>{{c.name}}</b>
+    <br>
+    {{c.address1}}
+    <br>
+    {{c.city}} {{c.zip_code}}
+  </p>
+</ng-template>
+
+<div> 
+    <button mat-raised-button class="clickabul" href="/edit-user.component.html">Edit Profile</button>
+</div>
+
+<form [formGroup]="myForm">
+  Value: {{ myForm.value | json }}
+
+  <hr>
+
+  <mat-form-field>
+    <input matInput placeholder="name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="email" formControlName="email">
+
+    <mat-error *ngIf="email.invalid && email.touched" >
+      Enter a valid email
+    </mat-error>
+
+  </mat-form-field>
+
+  <div formGroupName="homeAddress">
+
+    <mat-form-field>
+      <input matInput placeholder="Address" formControlName="address">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="City" formControlName="city">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="State" formControlName="state">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Zip Code" formControlName="zip">
+
+      <mat-error *ngIf="zip.invalid && zip.touched" >
+        Enter a valid zip code
+      </mat-error>
+
+    </mat-form-field>
+
+  </div>
+
+  <button [disabled]="myForm.invalid">Submit Form</button>
+
+</form>

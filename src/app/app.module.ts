@@ -36,6 +36,8 @@ import { DialogComponent } from './shared/dialog.component';
 import { HomeComponent } from './views/home.component';
 import { VerifyComponent } from './views/verify.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     HttpClientModule,
@@ -60,7 +62,8 @@ import { VerifyComponent } from './views/verify.component';
     MatTabsModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -68,7 +71,7 @@ import { VerifyComponent } from './views/verify.component';
     RegisterComponent,
     DialogComponent,
     HomeComponent,
-    VerifyComponent
+    VerifyComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true }

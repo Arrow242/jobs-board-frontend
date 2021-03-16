@@ -11,6 +11,8 @@ const notLoggedIn = () => map(user => user ? ['home'] : true);
 
 const routes: Routes = [
   { path: 'companies', loadChildren: () => import('./companies/companies.module').then(m => m.CompaniesModule) },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+  // { path: 'edit-user', loadChildren: () => import('./user/edit-user/edit-user.component').then(m => m.EditUserComponent) },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: notLoggedIn } },
   { path: 'verify', component: VerifyComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: !notLoggedIn } },
