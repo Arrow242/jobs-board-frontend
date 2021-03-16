@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   ready = false;
   user: User[];
 
-  myForm: FormGroup;
+  userForm: FormGroup;
 
 
   constructor(private userService: UserService, private fb: FormBuilder) { }
@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
       this.ready = true;
     });
 
-    this.myForm.valueChanges.subscribe(console.log)
+    this.userForm.valueChanges.subscribe(console.log)
 
     const address = this.fb.group({
       address: [],
@@ -31,10 +31,11 @@ export class UserComponent implements OnInit {
       zip: [null, [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(5)
+        Validators.maxLength(5),
+        Validators.pattern("^[0-9]*$")
       ]]
     })
-    this.myForm = this.fb.group({
+    this.userForm = this.fb.group({
       name: '',
       email: ['',[
         Validators.required,
@@ -45,9 +46,9 @@ export class UserComponent implements OnInit {
   }
   
   get email(){
-    return this.myForm.get('email');
+    return this.userForm.get('email');
   }
   get zip(){
-      return this.myForm.get('zip');
+      return this.userForm.get('homeAddress.zip');
   }
 }
